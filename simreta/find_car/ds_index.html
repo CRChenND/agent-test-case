@@ -97,10 +97,12 @@
 								<label style="font-size: 14px; font-weight: bold;">Rental dates*</label>
 								<div style="display: flex; align-items: center; gap: 10px;">
 									<input type="date"
+										id="startDate"
 										required
 										style="flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 8px; font-size: 14px; font-style: italic;">
 									<span style="font-size: 16px; color: gray;">-</span>
 									<input type="date"
+										id="endDate"
 										required
 										style="flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 8px; font-size: 14px; font-style: italic;">
 									<img src="calendar-icon.png" alt="Calendar" style="width: 18px; height: 18px;">
@@ -112,6 +114,7 @@
 								<div class="form-group" style="display: flex; flex-direction: column; flex: 1;">
 									<label style="font-size: 14px; font-weight: bold;">Pickup time</label>
 									<select
+										id="startTime"
 										required
 										style="padding: 10px; border: 2px solid blue; border-radius: 8px; font-size: 14px;">
 										<option>7:00 a.m.</option>
@@ -123,6 +126,7 @@
 								<div class="form-group" style="display: flex; flex-direction: column; flex: 1;">
 									<label style="font-size: 14px; font-weight: bold;">Drop off time</label>
 									<select
+										id="endTime"
 										required
 										style="padding: 10px; border: 1px solid #ccc; border-radius: 8px; font-size: 14px;">
 										<option>7:00 a.m.</option>
