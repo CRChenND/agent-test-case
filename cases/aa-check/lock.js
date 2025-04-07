@@ -17,11 +17,5 @@ document.addEventListener("DOMContentLoaded", function () {
     // 添加输入事件监听器
     lastNameInput.addEventListener("input", validateForm);
     confirmationInput.addEventListener("input", validateForm);
-
-    // 原有点击事件保留
-    findBtn.addEventListener("click", function (event) {
-        alert("Task complete!");
-        downloadLog();
-    });
 });
 
