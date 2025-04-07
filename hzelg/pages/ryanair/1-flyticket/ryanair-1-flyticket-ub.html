@@ -405,6 +405,15 @@
       color: #333;
     }
 
+            /* Disabled continue button styling */
+    .continue-btn:disabled,
+    .btn-disabled {
+      background-color: #ccc !important;
+      color: #888 !important;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
     .form-group select,
     .form-group input {
       width: 100%;
@@ -607,6 +616,7 @@
       }
     });
   </script>
+  <script src="lock.js"></script>
 
 </body>
 </html>

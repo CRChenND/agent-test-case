@@ -20,6 +20,14 @@
             justify-content: space-between;
             align-items: center;
         }
+        .submit-btn:disabled,
+        .btn-disabled {
+            background-color: #ccc !important;
+            color: #888 !important;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
         
         .logo {
             font-size: 24px;
@@ -850,5 +858,6 @@
         });
     });
   </script>
+<script src="lock.js"></script>
 </body>
 </html>

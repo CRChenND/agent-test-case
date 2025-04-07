@@ -304,6 +304,15 @@
       text-decoration: none;
     }
 
+        /* Disabled continue button styling */
+    .continue-btn:disabled,
+    .btn-disabled {
+      background-color: #ccc !important;
+      color: #888 !important;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
     /* Login section (placeholder) */
     .login-section {
       margin: 15px 20px;
@@ -612,6 +621,7 @@
       }
     });
   </script>
+  <script src="lock.js"></script>
 
 </body>
 </html>
