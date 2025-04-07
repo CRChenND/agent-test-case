@@ -401,3 +401,8 @@ footer .popular-topics a:hover {
     text-align: left;
     padding: 0 15px;
 }
+
+#submit:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+}

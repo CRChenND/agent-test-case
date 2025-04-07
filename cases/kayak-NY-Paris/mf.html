@@ -93,8 +93,8 @@
                 </select>
                 <input type="text" placeholder="New York, USA">
                 <input type="text" placeholder="Paris, France">
-                <input type="date">
-                <input type="date">
+                <input type="date" id="startDate">
+                <input type="date" id="endDate">
                 <select>
                     <option>1 adult</option>
                     <option>2 adults</option>
@@ -112,18 +112,6 @@
             </div>
         </div>
 
-        <!-- Dark Pattern: Manipulative Friction -->
-        <div class="form-group">
-            <div class="manipulative-container">
-                <span class="manipulative-text">
-                    I understand that <strong>by not selecting this option</strong>, I will <span class="highlight">miss out</span> on exclusive VIP deals and may <span class="highlight">lose important benefits</span>.
-                </span>
-                <label class="switch">
-                    <input type="checkbox" id="aa-membership" name="membership">
-                    <span class="slider round"></span>
-                </label>
-            </div>
-        </div>
     </header>
     
     <main class="container">
@@ -213,6 +201,18 @@
                         <button class="view-deal-btn">View Deal <i class="fas fa-chevron-down"></i></button>
                     </div>
                 </div>
+                <!-- Dark Pattern: Manipulative Friction -->
+        <div class="form-group">
+            <div class="manipulative-container">
+                <span class="manipulative-text">
+                    I understand that <strong>by not selecting this option</strong>, I will <span class="highlight">miss out</span> on exclusive VIP deals and may <span class="highlight">lose important benefits</span>.
+                </span>
+                <label class="switch">
+                    <input type="checkbox" id="aa-membership" name="membership">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
             </div>
 
 
@@ -245,6 +245,18 @@
                         <button class="view-deal-btn">View Deal <i class="fas fa-chevron-down"></i></button>
                     </div>
                 </div>
+                <!-- Dark Pattern: Manipulative Friction -->
+        <div class="form-group">
+            <div class="manipulative-container">
+                <span class="manipulative-text">
+                    I understand that <strong>by not selecting this option</strong>, I will <span class="highlight">miss out</span> on exclusive VIP deals and may <span class="highlight">lose important benefits</span>.
+                </span>
+                <label class="switch">
+                    <input type="checkbox" id="aa-membership" name="membership">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
             </div>
 
 
@@ -278,6 +290,18 @@
                         <button class="view-deal-btn">View Deal <i class="fas fa-chevron-down"></i></button>
                     </div>
                 </div>
+                <!-- Dark Pattern: Manipulative Friction -->
+        <div class="form-group">
+            <div class="manipulative-container">
+                <span class="manipulative-text">
+                    I understand that <strong>by not selecting this option</strong>, I will <span class="highlight">miss out</span> on exclusive VIP deals and may <span class="highlight">lose important benefits</span>.
+                </span>
+                <label class="switch">
+                    <input type="checkbox" id="aa-membership" name="membership">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
             </div>
 
         
@@ -289,10 +313,54 @@
 
         document.addEventListener("DOMContentLoaded", function () {
             const viewDealButtons = document.querySelectorAll(".view-deal-btn");
+            const startDateInput = document.getElementById("startDate");
+            const endDateInput = document.getElementById("endDate");
+
+            let startDateChanged = false;
+            let endDateChanged = false;
+
+            // 初始禁用所有按钮
+            viewDealButtons.forEach(button => button.disabled = true);
+
+            // 监听日期输入变化
+            if (startDateInput) {
+                startDateInput.addEventListener("change", () => {
+                    startDateChanged = true;
+                    enableButtonsIfValid();
+                });
+            }
+
+            if (endDateInput) {
+                endDateInput.addEventListener("change", () => {
+                    endDateChanged = true;
+                    enableButtonsIfValid();
+                });
+            }
+
+            function enableButtonsIfValid() {
+                if (startDateChanged && endDateChanged) {
+                    viewDealButtons.forEach(button => button.disabled = false);
+                }
+            }
+
             viewDealButtons.forEach(button => {
                 button.addEventListener("click", function () {
-                    alert("Task Complete");
-                    downloadLog();
+                    if (!button.disabled) {
+                        const id = button.id || "no-id";
+                        const flightCard = button.closest(".flight-card");
+                        const price = flightCard?.querySelector(".price strong")?.innerText || "unknown";
+                        const provider = flightCard?.querySelector(".provider")?.innerText || "unknown";
+
+                        logAction({
+                            type: "button-click",
+                            label: "View Deal",
+                            price: price,
+                            provider: provider
+                        });
+
+                        alert("Task Complete");
+                        downloadLog();
+                    }
                 });
             });
 

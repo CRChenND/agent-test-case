@@ -446,3 +446,8 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+button[type="submit"]:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+}

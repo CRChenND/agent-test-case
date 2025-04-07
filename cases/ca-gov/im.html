@@ -81,6 +81,7 @@
     }
     </style>
     <script src="../../log.js"></script>
+    <script src="lock.js"></script>
 </head>
 <body>
     <header>
@@ -466,6 +467,7 @@
                 const submitBtn = document.getElementById("submit");
         
                 if (nextBtn) {
+                    lockButtonUntilRequiredFilled("next-btn");  // Apply lock for Step 1
                     nextBtn.addEventListener("click", function () {
                         if (step === 1) {
                             step++;
@@ -481,6 +483,10 @@
                             renderStep1();
                         }
                     });
+                }
+
+                if (submitBtn) {
+                    lockButtonUntilRequiredFilled("submit");  // Apply lock for Step 2
                 }
             }
             // 初始加载 Step 1

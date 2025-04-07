@@ -271,3 +271,9 @@ footer {
     padding: 20px;
     text-align: center;
 }
+
+#submit:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+}
+

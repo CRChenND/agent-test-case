@@ -96,8 +96,8 @@
                 </select>
                 <input type="text" placeholder="New York, USA">
                 <input type="text" placeholder="Paris, France">
-                <input type="date">
-                <input type="date">
+                <input type="date" id="startDate">
+                <input type="date" id="endDate">
                 <select>
                     <option>1 adult</option>
                     <option>2 adults</option>
@@ -353,13 +353,38 @@
         initLogger("im.json");
 
         document.addEventListener("DOMContentLoaded", function () {
-            
-            const modal = document.getElementById("privacy-modal");
-            const agreeBtn = document.getElementById("agree-btn");
-            const cancelBtn = document.getElementById("cancel-btn");
-            const modalBody = document.getElementById("modal-body");
-            
+
             const viewDealButtons = document.querySelectorAll(".view-deal-btn");
+            const startDateInput = document.getElementById("startDate");
+            const endDateInput = document.getElementById("endDate");
+
+            let startDateChanged = false;
+            let endDateChanged = false;
+
+            // 初始禁用所有按钮
+            viewDealButtons.forEach(button => button.disabled = true);
+
+            // 监听日期输入变化
+            if (startDateInput) {
+                startDateInput.addEventListener("change", () => {
+                    startDateChanged = true;
+                    enableButtonsIfValid();
+                });
+            }
+
+            if (endDateInput) {
+                endDateInput.addEventListener("change", () => {
+                    endDateChanged = true;
+                    enableButtonsIfValid();
+                });
+            }
+
+            function enableButtonsIfValid() {
+                if (startDateChanged && endDateChanged) {
+                    viewDealButtons.forEach(button => button.disabled = false);
+                }
+            }
+
             viewDealButtons.forEach(button => {
                 button.addEventListener("click", function () {
                     modal.style.display = "flex";
@@ -369,6 +394,12 @@
                     modalBody.scrollTop = 0;
                 });
             });
+            
+            const modal = document.getElementById("privacy-modal");
+            const agreeBtn = document.getElementById("agree-btn");
+            const cancelBtn = document.getElementById("cancel-btn");
+            const modalBody = document.getElementById("modal-body");
+            
 
     
             // Enable "I Agree" button after scrolling to bottom

@@ -128,3 +128,8 @@ footer {
     color: white;
     margin-top: 20px;
 }
+
+#submit:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+}

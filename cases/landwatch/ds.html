@@ -6,6 +6,7 @@
     <title>LandWatch</title>
     <link rel="stylesheet" href="style.css"> 
     <script src="../../log.js"></script>
+    <script src="lock.js"></script>
 </head>
 <body>
     <header>
@@ -42,7 +43,7 @@
                         <h3>Jackson Township, OH, Brown County</h3>
                         <p>D. Craig Wilson – Wilson Realtors</p>
                     </div>
-                    <button class="contact-btn" 
+                    <button class="contact-btn" id="btn-land1"
     onclick="openModal('D. Craig Wilson', 'Wilson Realtors')">Contact Seller</button>
 
                 </div>
@@ -56,7 +57,7 @@
                         <h3>Jackson Township, OH, Brown County</h3>
                         <p>D. Craig Wilson – Wilson Realtors</p>
                     </div>
-                    <button class="contact-btn" 
+                    <button class="contact-btn" id="btn-land2"
     onclick="openModal('D. Craig Wilson', 'Wilson Realtors')">Contact Seller</button>
 
                 </div>
@@ -70,7 +71,7 @@
                         <h3>J2592 Riverside Drive, Cincinnati, OH, 45202, Hamilton County</h3>
                         <p>Jim Schack Wilson – Wilson Realtors</p>
                     </div>
-                    <button class="contact-btn" 
+                    <button class="contact-btn"  id="btn-land3"
     onclick="openModal('Jim Schack Wilson', 'Wilson Realtors')">Contact Seller</button>
 
                 </div>
@@ -84,7 +85,7 @@
                         <h3>Jackson Township, OH, Brown County</h3>
                         <p>D. Craig Wilson – Wilson Realtors</p>
                     </div>
-                    <button class="contact-btn" 
+                    <button class="contact-btn"  id="btn-land4"
     onclick="openModal('D. Craig Wilson', 'Wilson Realtors')">Contact Seller</button>
                 </div>
             </div>
@@ -100,9 +101,9 @@
             <p><a href="#">📞 View Phone Number</a></p>
     
             <form>
-                <input type="text" placeholder="Name" required>
-                <input type="email" placeholder="Email Address" required>
-                <input type="tel" placeholder="Phone Number">
+                <input id="name" type="text" placeholder="Name" required>
+                <input id="email" type="email" placeholder="Email Address" required>
+                <input id="phone" type="tel" placeholder="Phone Number">
                 <textarea placeholder="Message"></textarea>
                 
                 <label class="checkbox">

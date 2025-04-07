@@ -296,3 +296,9 @@ label {
 .footer-links a {
     color: #fff;
 }
+
+
+#submit:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+}

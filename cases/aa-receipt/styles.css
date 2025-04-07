@@ -1,0 +1,4 @@
+.search-btn:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+}
