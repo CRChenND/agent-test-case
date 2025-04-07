@@ -279,7 +279,7 @@
       <div class="divider"></div>
 
       <div class="button-container">
-        <button class="find-button">Find booking</button>
+        <button class="find-button" type="button" disabled>Find booking</button>
       </div>
     </form>
     </div>
@@ -296,6 +296,10 @@
 
         const btn = document.querySelector(".find-button");
         btn.addEventListener("click", function (event) {
+          if (btn.disabled) {
+              alert("Please fill out all required fields.");
+              return;
+            }
           alert("Task complete!");
           downloadLog();
         });

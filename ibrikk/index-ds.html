@@ -202,7 +202,7 @@
       <div class="divider"></div>
 
       <div class="button-container">
-        <button class="find-button" id="submit">Find booking</button>
+        <button class="find-button" id="submit" type="button" disabled>Find booking</button>
       </div>
     </form>
     </div>
@@ -218,6 +218,10 @@
         document.addEventListener("DOMContentLoaded", function () {
             const submitBtn = document.getElementById("submit");
             submitBtn.addEventListener("click", function () {
+                if (submitBtn.disabled) {
+                  alert("Please fill out all required fields.");
+                  return;
+                }
                 alert("Task complete!");
                 downloadLog();
             });

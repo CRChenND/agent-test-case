@@ -271,7 +271,7 @@
       <div class="divider"></div>
 
       <div class="button-container">
-        <button class="find-button">Find booking</button>
+        <button class="find-button" type="button" disabled>Find booking</button>
       </div>
     </form>
     </div>
@@ -379,6 +379,12 @@
         if (findBookingBtn) {
           findBookingBtn.addEventListener("click", function (e) {
             e.preventDefault();
+
+            if (findBookingBtn.disabled) {
+              alert("Please fill out all required fields.");
+              return;
+            }
+
             modal.style.display = "flex";
             agreeBtn.classList.remove("active");
             registerPopupElement(modal); 
