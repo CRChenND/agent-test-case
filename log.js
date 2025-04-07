@@ -81,79 +81,85 @@ function generateSelector(el) {
 
 function initLogger(filename = "activity_log.json") {
     if (!sessionStorage.getItem("loggerInitialized")) {
-
         localStorage.removeItem("userActions");
         localStorage.removeItem("lastInputValues");
         localStorage.removeItem("lastToggleStates");
-    
+
         userActions = [];
         lastInputValues = {};
         lastToggleStates = {};
-    
-        sessionStorage.setItem("loggerInitialized", "true");
-      } else {
 
+        sessionStorage.setItem("loggerInitialized", "true");
+    } else {
         userActions = JSON.parse(localStorage.getItem("userActions") || "[]");
         lastInputValues = JSON.parse(localStorage.getItem("lastInputValues") || "{}");
         lastToggleStates = JSON.parse(localStorage.getItem("lastToggleStates") || "{}");
-      }
-    
+    }
 
+    logFilename = filename;
 
-  logFilename = filename;
+    document.addEventListener("click", (event) => {
+        const target = event.target;
+        if (target.tagName.toLowerCase() !== "input") {
+            const inPopup = isClickInPopup(target);
+            logAction("click", {
+                element: target.tagName.toLowerCase(),
+                id: target.id || "none",
+                classname: target.className || "none",
+                elementText: target.textContent?.substring(0, 50) || "none",
+                x: event.clientX,
+                y: event.clientY,
+                isInPopup: inPopup,
+            });
+        }
+    });
 
-  document.addEventListener("click", (event) => {
-      const target = event.target;
-      if (target.tagName.toLowerCase() !== "input") {
-          const inPopup = isClickInPopup(target);
-          logAction("click", {
-              element: target.tagName.toLowerCase(),
-              id: target.id || "none",
-              classname: target.className || "none",
-              elementText: target.textContent?.substring(0, 50) || "none",
-              x: event.clientX,
-              y: event.clientY,
-              isInPopup: inPopup,
-          });
-      }
-  });
+    // ✅ 动态监听所有 input/textarea 输入内容
+    document.body.addEventListener("input", (event) => {
+        const target = event.target;
+        const tag = target.tagName.toLowerCase();
+        const type = target.type;
 
-  document.querySelectorAll("input, textarea").forEach((input) => {
-      const type = input.type;
-      const allowedTypes = ["text", "number", "email", "password", "search", "url", "tel", "textarea", "date", "time"];
-      if (allowedTypes.includes(type) || input.tagName.toLowerCase() === "textarea") {
-          input.addEventListener("input", (event) => {
-              const id = getInputIdentifier(event.target);
-              const value = event.target.value;
-              lastInputValues[id] = value;
-          });
-      }
-  });
+        const allowedTypes = ["text", "number", "email", "password", "search", "url", "tel", "date", "time"];
+        if ((tag === "input" && allowedTypes.includes(type)) || tag === "textarea") {
+            const id = getInputIdentifier(target);
+            const value = target.value;
+            lastInputValues[id] = value;
+        }
+    });
 
-  document.querySelectorAll("select").forEach((select) => {
-      select.addEventListener("change", (event) => {
-          const id = getInputIdentifier(event.target);
-          const value = event.target.value;
-          lastInputValues[id] = value;
-          logAction("select", {
-              fieldId: id,
-              selectedValue: value
-          });
-      });
-  });
+    // ✅ 动态监听所有 select 变更
+    document.body.addEventListener("change", (event) => {
+        const target = event.target;
+        if (target.tagName.toLowerCase() === "select") {
+            const id = getInputIdentifier(target);
+            const value = target.value;
+            lastInputValues[id] = value;
+            logAction("select", {
+                fieldId: id,
+                selectedValue: value
+            });
+        }
+    });
 
-  document.querySelectorAll("input[type='checkbox'], input[type='radio']").forEach((toggle) => {
-      toggle.addEventListener("change", (event) => {
-          const toggleId = getInputIdentifier(event.target);
-          const checked = event.target.checked;
-          logAction("toggle", {
-              id: toggleId,
-              type: event.target.type,
-              name: event.target.name || "none",
-              checked: checked,
-          });
-          lastToggleStates[toggleId] = checked;
-      });
-  });
+    // ✅ 动态监听所有 checkbox/radio 状态变更
+    document.body.addEventListener("change", (event) => {
+        const target = event.target;
+        if (target.tagName.toLowerCase() === "input" &&
+            (target.type === "checkbox" || target.type === "radio")) {
+            const toggleId = getInputIdentifier(target);
+            const checked = target.checked;
+            logAction("toggle", {
+                id: toggleId,
+                type: target.type,
+                name: target.name || "none",
+                checked: checked,
+            });
+            lastToggleStates[toggleId] = checked;
+        }
+    });
 }
+
+
+
 
