@@ -16,11 +16,4 @@ document.addEventListener("DOMContentLoaded", function () {
 	);
 
 	validateModalForm(); // initialize state
-
-	// Optional: Enhance keyboard UX with Enter key handling
-	submitBtn.addEventListener("keydown", function (event) {
-		if (event.key === "Enter" && submitBtn.disabled) {
-			event.preventDefault();
-		}
-	});
 });
