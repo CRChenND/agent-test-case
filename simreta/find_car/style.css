@@ -17,6 +17,11 @@ body {
 	color: white;
 }
 
+.submit-btn:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+  }
+  
 .nav-links {
 	list-style: none;
 	display: flex;

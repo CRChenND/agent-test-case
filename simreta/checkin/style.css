@@ -23,6 +23,11 @@ body {
 	gap: 20px;
 }
 
+.submit-btn:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+  }
+  
 .nav-links li a {
 	color: white;
 	text-decoration: none;

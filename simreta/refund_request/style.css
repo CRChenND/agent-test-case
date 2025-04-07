@@ -98,6 +98,11 @@ body {
 	cursor: pointer;
 }
 
+button:disabled {
+	background-color: #cccccc !important;
+	cursor: not-allowed;
+}
+
 .button {
 	background-color: #00274d;
 	color: white;
