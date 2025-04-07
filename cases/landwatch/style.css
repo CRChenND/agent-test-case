@@ -187,7 +187,7 @@ header {
 }
 
 .modal-content textarea {
-    height: 100px;
+    height: 10px;
     resize: vertical;
 }
 
