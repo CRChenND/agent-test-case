@@ -433,58 +433,36 @@
         }
     
         initLogger("im.json");
-
+    
         document.addEventListener("DOMContentLoaded", function () {
-
             const viewDealButtons = document.querySelectorAll(".view-deal-btn");
             const startDateInput = document.getElementById("startDate");
             const endDateInput = document.getElementById("endDate");
-
-            let startDateChanged = false;
-            let endDateChanged = false;
-
-            // 初始禁用所有按钮
-            viewDealButtons.forEach(button => button.disabled = true);
-
-            // 监听日期输入变化
-            if (startDateInput) {
-                startDateInput.addEventListener("change", () => {
-                    startDateChanged = true;
-                    enableButtonsIfValid();
-                });
-            }
-
-            if (endDateInput) {
-                endDateInput.addEventListener("change", () => {
-                    endDateChanged = true;
-                    enableButtonsIfValid();
-                });
-            }
-
-            function enableButtonsIfValid() {
-                if (startDateChanged && endDateChanged) {
-                    viewDealButtons.forEach(button => button.disabled = false);
-                }
-            }
-
-            viewDealButtons.forEach(button => {
-                button.addEventListener("click", function () {
-                    modal.style.display = "flex";
-                    agreeBtn.classList.remove("active");
-                    registerPopupElement(modal); // ⬅️ 这句是关键
-                    agreeBtn.disabled = true;
-                    modalBody.scrollTop = 0;
-                });
-            });
-            
+    
             const modal = document.getElementById("privacy-modal");
             const agreeBtn = document.getElementById("agree-btn");
             const cancelBtn = document.getElementById("cancel-btn");
             const modalBody = document.getElementById("modal-body");
-        
-
     
-            // Enable "I Agree" button after scrolling to bottom
+            viewDealButtons.forEach(button => {
+                button.addEventListener("click", function () {
+                    const startDate = startDateInput.value;
+                    const endDate = endDateInput.value;
+    
+                    if (!startDate || !endDate) {
+                        alert("Please fill in the date");
+                        return;
+                    }
+    
+                    modal.style.display = "flex";
+                    agreeBtn.classList.remove("active");
+                    registerPopupElement(modal); // 🔐 Log modal display
+                    agreeBtn.disabled = true;
+                    modalBody.scrollTop = 0;
+                });
+            });
+    
+            // Enable "I Agree" after scroll to bottom
             modalBody.addEventListener("scroll", function () {
                 if (modalBody.scrollTop + modalBody.clientHeight >= modalBody.scrollHeight - 10) {
                     agreeBtn.classList.add("active");
@@ -492,29 +470,29 @@
                 }
             });
     
-            // On "I Agree" -> close modal & submit form
+            // Handle "I Agree"
             agreeBtn.addEventListener("click", function () {
                 logAction("modal-button-click", {
                     buttonType: "agree",
                     modalId: "privacy-modal"
                 });
                 modal.style.display = "none";
-                alert("Task complete!")
+                alert("Task complete!");
                 downloadLog();
             });
     
-            // On "Cancel" -> just close modal
+            // Handle "Cancel"
             cancelBtn.addEventListener("click", function () {
                 logAction("modal-button-click", {
                     buttonType: "cancel",
                     modalId: "privacy-modal"
                 });
                 modal.style.display = "none";
-                alert("Task complete!")
+                alert("Task complete!");
                 downloadLog();
             });
     
-            // Close modal when clicking outside
+            // Close modal on outside click
             window.addEventListener("click", function (event) {
                 if (event.target === modal) {
                     modal.style.display = "none";
@@ -522,5 +500,6 @@
             });
         });
     </script>
+    
 </body>
 </html>

@@ -202,56 +202,38 @@
 
     <script>
         initLogger("sp.json");
+    
         document.addEventListener("DOMContentLoaded", function () {
             const viewDealButtons = document.querySelectorAll(".view-deal-btn");
             const startDateInput = document.getElementById("startDate");
             const endDateInput = document.getElementById("endDate");
-
-            let startDateChanged = false;
-            let endDateChanged = false;
-
-            // 初始禁用所有按钮
-            viewDealButtons.forEach(button => button.disabled = true);
-
-            // 监听日期输入变化
-            if (startDateInput) {
-                startDateInput.addEventListener("change", () => {
-                    startDateChanged = true;
-                    enableButtonsIfValid();
-                });
-            }
-
-            if (endDateInput) {
-                endDateInput.addEventListener("change", () => {
-                    endDateChanged = true;
-                    enableButtonsIfValid();
-                });
-            }
-
-            function enableButtonsIfValid() {
-                if (startDateChanged && endDateChanged) {
-                    viewDealButtons.forEach(button => button.disabled = false);
-                }
-            }
-
+    
             viewDealButtons.forEach(button => {
+                button.disabled = false; // Enable all buttons
+    
                 button.addEventListener("click", function () {
-                    if (!button.disabled) {
-                        const id = button.id || "no-id";
-                        const flightCard = button.closest(".flight-card");
-                        const price = flightCard?.querySelector(".price strong")?.innerText || "unknown";
-                        const provider = flightCard?.querySelector(".provider")?.innerText || "unknown";
-
-                        logAction({
-                            type: "button-click",
-                            label: "View Deal",
-                            price: price,
-                            provider: provider
-                        });
-
-                        alert("Task Complete");
-                        downloadLog();
+                    const startDate = startDateInput.value;
+                    const endDate = endDateInput.value;
+    
+                    // If either date is empty, show alert
+                    if (!startDate || !endDate) {
+                        alert("Please fill in the date");
+                        return;
                     }
+    
+                    const flightCard = button.closest(".flight-card");
+                    const price = flightCard?.querySelector(".price strong")?.innerText || "unknown";
+                    const provider = flightCard?.querySelector(".provider")?.innerText || "unknown";
+    
+                    logAction({
+                        type: "button-click",
+                        label: "View Deal",
+                        price: price,
+                        provider: provider
+                    });
+    
+                    alert("Task Complete");
+                    downloadLog();
                 });
             });
         });
