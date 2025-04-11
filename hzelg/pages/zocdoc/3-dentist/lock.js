@@ -31,12 +31,4 @@ document.addEventListener("DOMContentLoaded", function () {
       field.addEventListener("input", validateForm);
       field.addEventListener("change", validateForm);
     });
-  
-    // Task complete alert (if desired)
-    submitBtn.addEventListener("click", function (event) {
-      alert("Task complete!");
-      if (typeof downloadLog === "function") {
-        downloadLog();
-      }
-    });
   });
