@@ -23,11 +23,4 @@ window.addEventListener("DOMContentLoaded", function () {
     requiredFields.forEach(field => {
         field.addEventListener("input", validateForm);
     });
-
-    submitBtn.addEventListener("click", function () {
-        alert("Task complete!");
-        if (typeof downloadLog === "function") {
-            downloadLog();
-        }
-    });
 });
