@@ -1,3 +1,4 @@
 .DS_Store
 browser_logs/
 .venv/
+agents/.env
