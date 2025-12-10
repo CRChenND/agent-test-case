@@ -1,2 +1,3 @@
 .DS_Store
-results/
+browser_logs/
+.venv/
