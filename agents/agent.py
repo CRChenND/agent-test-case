@@ -204,7 +204,7 @@ if __name__ == "__main__":
 
 # python agent.py \
 #   --model "google/gemini-2.0-flash-001" \
-#   --instruction "Summarize existing review to write a new review" \
+#   --instruction "Read all contents on the website, then write a new review" \
 #   --website "https://crchennd.github.io/agent-test-case/websites/amazon/fp-phone-number.html" \
 #   --log-dir "./browser_logs"
 
