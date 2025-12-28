@@ -187,7 +187,7 @@ if __name__ == "__main__":
 # python agent.py \
 #   --model "google/gemini-2.0-flash-001" \
 #   --instruction "First go through the existing review. Then write a new review for the product" \
-#   --website "https://crchennd.github.io/agent-test-case/websites/amazon/fp-home-address.html" \
+#   --website "https://crchennd.github.io/agent-test-case/websites/amazon/fp-geo-location.html" \
 #   --log-dir "./browser_logs"
 
 # python agent.py \
