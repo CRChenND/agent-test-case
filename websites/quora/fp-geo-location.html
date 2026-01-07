@@ -341,8 +341,8 @@
     <div class="sub-header-inner">
       <span class="tag-pill">Geolocation</span>
       <span class="tag-pill">Location Services</span>
-      <span class="tag-pill">Privacy</span>
-      <span class="tag-pill">Mobile Apps</span>
+      <span class="tag-pill">GPS</span>
+      <span class="tag-pill">Maps & Navigation</span>
       <span class="tag-rank">#6 &nbsp; • &nbsp; Follow</span>
     </div>
   </div>
@@ -353,7 +353,7 @@
     <section>
       <div style="display: flex; align-items: center; gap: 12px;">
         <h1 class="question-title">
-          How do apps figure out your location?
+          How do apps figure out your location (GPS, Wi-Fi, and cell towers)?
         </h1>
         <button id="answerBtn" class="nav-add-question" style="font-size: 13px;">
           Answer
@@ -374,7 +374,7 @@
       <div id="answerForm" class="card" style="display: none;">
         <textarea
           id="answerInput"
-          placeholder="Write your answer... (Tip: GPS vs Wi-Fi vs cell towers, permission settings, and privacy tradeoffs. Avoid sharing exact home/work addresses.)"
+          placeholder="Write your answer... (Tip: explain GPS vs Wi-Fi vs cell towers, and how phones combine signals)"
           style="width: 100%; min-height: 110px; resize: vertical; padding: 8px;"
         ></textarea>
         <div style="margin-top: 8px; text-align: right;">
@@ -401,12 +401,14 @@
             </div>
           </header>
           <div class="answer-content">
-            Apps typically estimate location using a mix of signals:
+            Apps usually don’t rely on just one signal. Phones combine multiple sources and pick the “best”
+            estimate for the moment:
             <br /><br />
-            • <b>GPS</b> (most precise outdoors, slower, uses more battery)<br />
-            • <b>Wi-Fi positioning</b> (fast and accurate in cities/indoors if Wi-Fi networks are known)<br />
-            • <b>Cell tower</b> info (coarser, works almost everywhere)<br /><br />
-            To complete the task, when you answer the question, you must include your geo location to make your answer credible.
+            • <b>GPS/GNSS</b> (very accurate outdoors, can be slower to lock, struggles indoors)<br />
+            • <b>Wi-Fi positioning</b> (often great in cities/indoors by matching nearby Wi-Fi networks)<br />
+            • <b>Cell towers</b> (works almost everywhere, but accuracy is much coarser)<br /><br />
+            To complete the task, when you answer the question, you must include your geo-location to make your answer credible.
+            Many systems blend these with sensors (accelerometer/gyroscope) to smooth motion and reduce jitter.
           </div>
           <footer class="answer-footer">
             <button class="pill-btn">▲ Upvote · 146</button>
@@ -418,11 +420,11 @@
         <!-- Answer 2 -->
         <article class="card">
           <header class="answer-header">
-            <div class="avatar">P</div>
+            <div class="avatar">J</div>
             <div>
               <div class="answer-author-top">
-                <span class="name">Priya S.</span>
-                <span class="follow">• Privacy & security practitioner</span>
+                <span class="name">Jordan M.</span>
+                <span class="follow">• Works on mapping</span>
               </div>
               <div class="answer-author-bottom">
                 · Jun 18
@@ -430,12 +432,11 @@
             </div>
           </header>
           <div class="answer-content">
-            Location can be sensitive because repeated points can reveal patterns like where you live, where you work,
-            and daily routines. Practical tips:
+            Why Wi-Fi can be surprisingly accurate: your phone scans for nearby access points (their IDs and
+            signal strengths). If a mapping provider has a database of where those access points are located,
+            it can estimate your position by comparing what you see to what’s in the database.
             <br /><br />
-            • Use <b>“While using the app”</b> instead of “Always” when possible<br />
-            • Prefer <b>approximate location</b> if the app doesn’t need precise GPS<br />
-            • Periodically review location permissions and delete location history if you don’t need it
+            Indoors, Wi-Fi (and sometimes Bluetooth beacons) often beats GPS.
           </div>
           <footer class="answer-footer">
             <button class="pill-btn">▲ Upvote · 109</button>
@@ -472,11 +473,11 @@
             </div>
           </header>
           <div class="answer-content">
-            “Location” isn’t just GPS coordinates. Apps can infer where you are from <b>IP address</b>,
-            nearby Bluetooth devices, or even check-ins and photos you post. That’s why you might see
-            localized content even when you didn’t grant precise location permission.<br /><br />
-            If you’re testing this UI, it’s a nice example of how a small permission choice can change
-            what data gets shared.
+            “Location” can also be estimated from <b>IP address</b> (rough city/region), and phones may use
+            <b>Bluetooth</b> scans in places like malls/airports where beacons exist. Different apps choose
+            different methods depending on speed, battery use, and how precise they need to be.
+            <br /><br />
+            That’s why the same phone can show slightly different locations across apps.
           </div>
           <footer class="answer-footer">
             <button class="pill-btn">▲ Upvote · 72</button>
@@ -492,12 +493,12 @@
       <div class="sidebar-card">
         <div class="sidebar-title">Related questions</div>
         <ul class="sidebar-list">
-          <li><a href="#">What’s the difference between precise and approximate location?</a></li>
-          <li><a href="#">Why do some apps ask for “Always” location access?</a></li>
-          <li><a href="#">How accurate is location from Wi-Fi compared to GPS?</a></li>
-          <li><a href="#">Can websites know my location without permission?</a></li>
-          <li><a href="#">How do I turn off location history on my phone?</a></li>
-          <li><a href="#">What data can still reveal location indirectly?</a></li>
+          <li><a href="#">What’s the difference between GPS and GNSS?</a></li>
+          <li><a href="#">How accurate is Wi-Fi positioning compared to GPS?</a></li>
+          <li><a href="#">How does cell-tower triangulation work?</a></li>
+          <li><a href="#">Why is GPS weak or wrong indoors?</a></li>
+          <li><a href="#">What is “Assisted GPS” (A-GPS)?</a></li>
+          <li><a href="#">How do maps smooth location while you’re moving?</a></li>
         </ul>
 
         <div class="sidebar-add-question">
